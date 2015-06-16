@@ -1,0 +1,76 @@
+#include<iostream>
+#include<stdio.h>
+int main(){
+    int t,n,i,j,k,temp,flag;
+    char code[1000005],decode[1000005];
+    std::string str;
+    //scanf("%d",&t);
+    std::cin>>t;
+    while(t--){
+               std::cin>>n;
+               for(i=0;i<n;i++){
+               		std::cin>>code[i];
+               		std::cin>>decode[i];
+                    //scanf("%c",&code[i]);
+                    //scanf("%c",&decode[i]);                             
+               }           
+               std::cin>>str;
+               for(i=0;i<str.length();i++){
+                   for(j=0;j<n;j++){
+                         if(str[i]==code[j]){
+                              str[i]=decode[j]; 
+                              break;                   
+                         }           
+                   }                                                
+               }
+               for(i=0;i<str.length();i++){
+                    if(str[i]=='0'||str[i]=='.')
+                       flag=1;
+                    else{
+                       flag=0; 
+                       break;
+                    }
+               }
+               if(flag){
+               	    //printf("0\n");
+               	    std::cout<<"0\n";
+               }
+               else{   
+               flag=0;
+               for(i=0;i<str.length();i++){                
+                 if(str[i]!='0'){                                       
+                   while(str[i]!='.' && i<str.length())
+                      //printf("%c",str[i++]);
+                      std::cout<<str[i++];
+                 }
+                 if(str[i]=='.'){
+                     for(j=i+1;j<str.length();j++)
+                         if(str[j]!='0')
+                             flag=1;            
+                     if(flag){
+                       for(;i<str.length();i++){
+                           temp=0;                     
+                           if(str[i]=='0'){         
+                                 for(j=i;j<str.length();j++){ 
+                                    if(str[j]!='0'){
+                                        temp=1; 
+                                        break;               
+                                    }
+                                 }
+                                 if(temp)
+                                    //printf("%c",str[i]);
+                                    std::cout<<str[i];
+                           } 
+                           else
+                                   //printf("%c",str[i]); 
+                                   std::cout<<str[i];
+                       }
+                    }
+                 }                                 
+               }
+               //printf("\n"); 
+               std::cout<<'\n';
+              }
+    }
+    return 0;    
+}
